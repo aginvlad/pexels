@@ -8,25 +8,25 @@ const suggested = () => {
             <span>Suggested</span>
             <ul className="suggested-container">
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">flower</a>
+                    <a href="#" className="suggested-container__item__tag">flower</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">love</a>
+                    <a href="#" className="suggested-container__item__tag">love</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">art</a>
+                    <a href="#" className="suggested-container__item__tag">art</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">wood</a>
+                    <a href="#" className="suggested-container__item__tag">wood</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">wall</a>
+                    <a href="#" className="suggested-container__item__tag">wall</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">rose</a>
+                    <a href="#" className="suggested-container__item__tag">rose</a>
                 </li>
                 <li className="suggested-container__item">
-                    <a className="suggested-container__item__tag">more</a>
+                    <a href="#" className="suggested-container__item__tag">more</a>
                 </li>
             </ul>
         </div>

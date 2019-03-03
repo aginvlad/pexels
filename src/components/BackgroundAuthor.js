@@ -5,7 +5,7 @@ import './BackgroundAuthor.sass';
 const backgroundAuthor = () => {
     return(
         <div className="bg-author">
-            <a className="bg-author__link">Photo by Markus Spiske temporausch.com</a>
+            <a href="smth" className="bg-author__link">Photo by Markus Spiske temporausch.com</a>
         </div>
     );
 };

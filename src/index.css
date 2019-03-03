@@ -26,6 +26,5 @@ button, button:focus, input, input:focus, a, a:focus, a:active {
 }
 
 a, a:visited, a:active {
-  color: #333;
   text-decoration: none;
 }
