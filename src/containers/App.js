@@ -17,29 +17,39 @@ class App extends Component {
       cache: 'default' 
     })
     .then(result => result.json())
-    .then(data => this.props.getBackground(data.photos[0].src.landscape))
+    .then(data => {
+      console.log(data);
+      data = data.photos[0];
+      this.props.getBackground(data.src.landscape, data.photographer, data.photographer_url)
+    })
     .catch(error => this.props.getBackground(bg));
   }
 
   render() {
     return (
-      <MainSection bg={this.props.background}/>
+      <MainSection bg={this.props.background}
+                   photographer={this.props.photographer}
+                   photographerUrl={this.props.photographerUrl} />
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
+    photographer: state.photographer,
+    photographerUrl: state.photographerUrl,
     background: state.backgroundImage
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBackground: (value) => dispatch({
+    getBackground: (background, photographer, photographerUrl) => dispatch({
       type: GET_BACKGROUND_IMAGE,
       payload: {
-        background: value 
+        photographer,
+        photographerUrl,
+        background 
       }
     })
   };

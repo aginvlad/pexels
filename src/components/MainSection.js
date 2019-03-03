@@ -17,7 +17,8 @@ const mainSection = (props) => {
                 <SearchBox />
                 <Suggested />
             </div>
-            <BackgroundAuthor />
+            <BackgroundAuthor photographer={props.photographer}
+                              photographerUrl={props.photographerUrl} />
         </section>
     );
 };

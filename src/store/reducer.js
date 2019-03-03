@@ -1,7 +1,7 @@
 import { GET_BACKGROUND_IMAGE } from '../store/actions';
 
 const initialState = {
-    
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,6 +9,8 @@ const reducer = (state = initialState, action) => {
         case GET_BACKGROUND_IMAGE:
             return {
                 ...state,
+                photographer: action.payload.photographer,
+                photographerUrl: action.payload.photographerUrl,
                 backgroundImage: action.payload.background
             }
         default:

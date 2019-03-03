@@ -1,11 +1,17 @@
 import React from 'react';
-
 import './BackgroundAuthor.sass';
 
-const backgroundAuthor = () => {
+const backgroundAuthor = (props) => {
     return(
         <div className="bg-author">
-            <a href="smth" className="bg-author__link">Photo by Markus Spiske temporausch.com</a>
+            <a href={props.photographerUrl} onClick={
+                () => {
+                    let win = window.open(props.photographerUrl, '_blank');
+                    win.focus();
+                    }
+                } 
+                target="_blank" className="bg-author__link">Photo by {props.photographer}
+            </a>
         </div>
     );
 };
