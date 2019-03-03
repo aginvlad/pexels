@@ -1,0 +1,25 @@
+.suggested
+    display: flex
+    align-items: center
+    font-size: 1.4rem
+    color: #fff
+    &-container
+        display: flex
+        padding: 0
+        &__item
+            margin-left: .8rem
+            font-size: 1.5rem
+            line-height: 24px
+            letter-spacing: -.2px
+            list-style-type: none
+            opacity: .8
+            cursor: pointer
+            &__tag
+                color: #fff
+
+            &:hover
+                opacity: 1    
+
+            &:not(:last-child)
+                &:after
+                    content: ","
