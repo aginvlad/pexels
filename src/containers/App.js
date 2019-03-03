@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GET_BACKGROUND_IMAGE } from '../store/actions';
+import Menu from '../components/Menu';
 import MainSection from '../components/MainSection';
+import Aux from '../hoc/Aux';
+
 import bg from '../assets/bg.jpeg';
 
 class App extends Component {
@@ -11,7 +14,7 @@ class App extends Component {
     fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, {
       method: 'GET',
       headers: {
-        Authorization: `563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
+        Authorization: `_563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
       },
       mode: 'cors',
       cache: 'default' 
@@ -20,16 +23,27 @@ class App extends Component {
     .then(data => {
       console.log(data);
       data = data.photos[0];
-      this.props.getBackground(data.src.landscape, data.photographer, data.photographer_url)
+      this.props.getBackground(data.src.original, data.photographer, data.photographer_url)
     })
     .catch(error => this.props.getBackground(bg));
+
+    window.onscroll = function () {
+      const nav = document.querySelector('.navigation');
+      this.pageYOffset > 105 ?
+        nav.classList.remove('navbar--transparent') :
+        nav.classList.add('navbar--transparent');
+    };
+
   }
 
   render() {
     return (
-      <MainSection bg={this.props.background}
-                   photographer={this.props.photographer}
-                   photographerUrl={this.props.photographerUrl} />
+      <Aux>
+        <Menu />
+        <MainSection bg={this.props.background}
+                     photographer={this.props.photographer}
+                     photographerUrl={this.props.photographerUrl} />
+      </Aux>
     );
   }
 }
