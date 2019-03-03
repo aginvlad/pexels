@@ -11,7 +11,7 @@ class App extends Component {
     fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, {
       method: 'GET',
       headers: {
-        Authorization: `_563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
+        Authorization: `563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
       },
       mode: 'cors',
       cache: 'default' 
