@@ -15,7 +15,7 @@ const menu = () => {
                         </svg>
                     </div>
                     <div className="navigation__logo__link__title">
-                        Pexeles
+                        Pexels
                     </div>
                 </a>
             </div>
