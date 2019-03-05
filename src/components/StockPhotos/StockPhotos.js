@@ -29,7 +29,7 @@ const stockPhotos = (props) => {
                 </div>
                 <div className="stock-photos__gallery__column">
                     {columnThree.map(el =>  
-                        <div className="stock-photos__gallery__column__item">
+                        <div key={el.id} className="stock-photos__gallery__column__item">
                             <img src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} />  
                         </div>    
                     )}
