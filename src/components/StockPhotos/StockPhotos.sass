@@ -1,0 +1,26 @@
+.stock-photos
+    padding: 0 2rem
+
+    &__title
+        display: block
+        margin-top: 2rem
+        margin-bottom: 1rem
+        font-size: 2rem
+        font-weight: 600
+        color: #333
+
+    &__gallery
+        display: flex
+        width: 100%
+
+        &__column
+            display: block
+            flex-basis: 0
+            flex-grow: 1
+            flex-shrink: 1
+            overflow: hidden
+
+            &:not(:last-child)
+                margin-right: 2rem
+            &__item
+                margin-bottom: 2rem
