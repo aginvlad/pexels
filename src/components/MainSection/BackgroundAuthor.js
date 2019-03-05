@@ -10,7 +10,7 @@ const backgroundAuthor = (props) => {
                     win.focus();
                     }
                 } 
-                target="_blank" className="bg-author__link">Photo by {props.photographer}
+                className="bg-author__link">Photo by {props.photographer}
             </a>
         </div>
     );

@@ -13,13 +13,11 @@ const reducer = (state = initialState, action) => {
                 photographerUrl: action.payload.photographerUrl,
                 backgroundImage: action.payload.background
             }
-            break;
         case GET_STOCK_PHOTOS:
             return {
                 ...state,
-                stockPhotos: action.payload.photos
+                stockPhotos: state.stockPhotos.concat(action.payload.photos)
             }
-            break;
         default:
             return state;
     } 

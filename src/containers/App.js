@@ -9,9 +9,9 @@ import Aux from '../hoc/Aux';
 import bg from '../assets/bg.jpeg';
 
 class App extends Component {
-
-  componentDidMount() {
-    let toConnect = {
+  constructor() {
+    super();
+    this.toConnect = {
       method: 'GET',
       headers: {
         Authorization: `563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
@@ -19,10 +19,25 @@ class App extends Component {
       mode: 'cors',
       cache: 'default' 
     };
-    
+    this.state = {
+      page: 0
+    }
+  }
+
+  loadPhotos = () => {
+    this.setState({page: this.state.page++});
+
+    fetch(`https://api.pexels.com/v1/curated?per_page=15&page=${this.state.page}`, this.toConnect)
+    .then(result => result.json())
+    .then(data => this.props.getStockPhotos(data.photos));
+  }
+
+  componentDidMount() {
+    let self = this;
+
     //Get Background
     const randNum = Math.floor((Math.random() * 1000) + 1);
-    fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, toConnect)
+    fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, this.toConnect)
     .then(result => result.json())
     .then(data => {
       data = data.photos[0];
@@ -31,16 +46,22 @@ class App extends Component {
     .catch(error => this.props.getBackground(bg, 'eberhard grossgasteiger', 'https://www.pexels.com/@eberhardgross'));
     
     // Get Stock Photos
-    fetch(`https://api.pexels.com/v1/curated?per_page=15&page=1`, toConnect)
-    .then(result => result.json())
-    .then(data => this.props.getStockPhotos(data.photos));
+    this.loadPhotos();
 
     // MenuHandler
     window.onscroll = function () {
       const nav = document.querySelector('.navigation');
       this.pageYOffset > 105 ?
         nav.classList.remove('navbar--transparent') :
-        nav.classList.add('navbar--transparent');
+        nav.classList.add('navbar--transparent'); 
+      var scrollHeight = Math.max(
+          document.body.scrollHeight, document.documentElement.scrollHeight,
+          document.body.offsetHeight, document.documentElement.offsetHeight,
+          document.body.clientHeight, document.documentElement.clientHeight
+      );
+
+      if(window.pageYOffset > scrollHeight - 1600)
+        self.loadPhotos();
     };
 
   }
