@@ -54,7 +54,7 @@ class App extends Component {
       this.pageYOffset > 105 ?
         nav.classList.remove('navbar--transparent') :
         nav.classList.add('navbar--transparent'); 
-      var scrollHeight = Math.max(
+      let scrollHeight = Math.max(
           document.body.scrollHeight, document.documentElement.scrollHeight,
           document.body.offsetHeight, document.documentElement.offsetHeight,
           document.body.clientHeight, document.documentElement.clientHeight
