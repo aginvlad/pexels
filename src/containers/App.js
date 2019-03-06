@@ -1,43 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GET_BACKGROUND_IMAGE, GET_STOCK_PHOTOS } from '../store/actions';
+import { GET_BACKGROUND_IMAGE, GET_STOCK_PHOTOS, fetchPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import MainSection from '../components/MainSection/MainSection';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
 import Aux from '../hoc/Aux';
-
+import { toConnect } from '../store/connection';
 import bg from '../assets/bg.jpeg';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.toConnect = {
-      method: 'GET',
-      headers: {
-        Authorization: `563492ad6f917000010000014640aabb4e9d420cbe1c0df7daf4c2bf`
-      },
-      mode: 'cors',
-      cache: 'default' 
-    };
-    this.state = {
-      page: 0
-    }
-  }
-
-  loadPhotos = () => {
-    this.setState({page: this.state.page++});
-
-    fetch(`https://api.pexels.com/v1/curated?per_page=15&page=${this.state.page}`, this.toConnect)
-    .then(result => result.json())
-    .then(data => this.props.getStockPhotos(data.photos));
-  }
-
   componentDidMount() {
     let self = this;
 
     //Get Background
     const randNum = Math.floor((Math.random() * 1000) + 1);
-    fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, this.toConnect)
+    fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, toConnect)
     .then(result => result.json())
     .then(data => {
       data = data.photos[0];
@@ -46,7 +23,7 @@ class App extends Component {
     .catch(error => this.props.getBackground(bg, 'eberhard grossgasteiger', 'https://www.pexels.com/@eberhardgross'));
     
     // Get Stock Photos
-    this.loadPhotos();
+    this.props.getStockPhotos();
 
     // MenuHandler
     window.onscroll = function () {
@@ -61,7 +38,7 @@ class App extends Component {
       );
 
       if(window.pageYOffset > scrollHeight - 1600)
-        self.loadPhotos();
+        self.props.getStockPhotos();
     };
 
   }
@@ -102,12 +79,7 @@ const mapDispatchToProps = dispatch => {
         background 
       }
     }),
-    getStockPhotos: (photos) => dispatch({
-      type: GET_STOCK_PHOTOS,
-      payload: {
-        photos
-      }
-    })
+    getStockPhotos: () => dispatch(fetchPhotos())
   };
 };
 
