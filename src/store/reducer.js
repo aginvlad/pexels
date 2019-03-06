@@ -1,7 +1,9 @@
 import { GET_BACKGROUND_IMAGE, GET_STOCK_PHOTOS } from '../store/actions';
 
 const initialState = {
-    stockPhotos: [],
+    stockPhotosColOne: [],
+    stockPhotosColTwo: [],
+    stockPhotosColThree: [],
     page: 1
 };
 
@@ -18,7 +20,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 page: state.page + 1,
-                stockPhotos: state.stockPhotos.concat(action.payload.photos)
+                stockPhotosColOne: state.stockPhotosColOne
+                    .concat(action.payload.photosColOne),
+                stockPhotosColTwo: state.stockPhotosColTwo
+                    .concat(action.payload.photosColTwo),  
+                stockPhotosColThree: state.stockPhotosColThree
+                    .concat(action.payload.photosColThree)
             }
         default:
             return state;

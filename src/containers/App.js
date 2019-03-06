@@ -50,7 +50,9 @@ class App extends Component {
         <MainSection bg={this.props.background}
                      photographer={this.props.photographer}
                      photographerUrl={this.props.photographerUrl} />
-        <StockPhotos photos={this.props.stockPhotos} />
+        <StockPhotos colOne={this.props.colOne}
+                     colTwo={this.props.colTwo}
+                     colThree={this.props.colThree} />
       </Aux>
     );
   }
@@ -65,7 +67,9 @@ const mapStateToProps = state => {
     photographer: state.photographer,
     photographerUrl: state.photographerUrl,
     background: state.backgroundImage,
-    stockPhotos: state.stockPhotos
+    colOne: state.stockPhotosColOne,
+    colTwo: state.stockPhotosColTwo,
+    colThree: state.stockPhotosColThree
   };
 };
 
