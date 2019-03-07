@@ -23,7 +23,89 @@
             &:not(:last-child)
                 margin-right: 2rem
             &__item
+                position: relative
                 margin-bottom: 2rem
+                cursor: pointer
+                
+                &::before
+                    content: ""
+                    pointer-events: none
+                    position: absolute
+                    left: 0
+                    right: 0
+                    bottom: 3px
+                    height: 80px
+                    background: linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 100%)
+                    opacity: 0
+                    transition: opacity .2s
+                    border-bottom-left-radius: 2px
+                    border-bottom-right-radius: 2px
+
+                &:hover::before
+                    opacity: 1
+
+                &:hover
+                   .stock-photos__gallery__column__item__overlay 
+                       opacity: 1
+            
+                &__overlay
+                    position: absolute
+                    bottom: 0
+                    display: flex
+                    align-items: center
+                    justify-content: space-between
+                    padding: 1.8rem 3rem
+                    width: 100%
+                    font-size: 1.6rem
+                    color: #eee
+                    opacity: 0
+                    transition: opacity .2s
+
+                    &:hover
+                        color: #fff
+
+                    a, a:visited, a:active, a:link, a:focus
+                        color: inherit
+
+                    &__buttons
+                        display: flex
+                        align-items: center
+                        
+                    .stock-overlay-add-button, .stock-overlay-like-button  
+                        position: relative
+                        padding: 0
+                        height: 2rem
+                        width: 2rem
+                        background: 0 0
+                        outline: none
+                        cursor: pointer
+ 
+                    .stock-overlay-add-button
+                        border: 2px solid #eee
+                        border-radius: 50%
+
+                        &:hover
+                            border-color: #fff
+                            background-color: rgba(255,255,255,.3)  
+
+                        svg
+                            position: absolute
+                            top: .34rem
+                            left: .41rem
+ 
+
+                    .stock-overlay-like-button                       
+                        border: none
+                        margin-left: 1rem
+                        svg
+                            position: absolute
+                            top: -.3rem
+                            left: -.3rem
+                        &:hover
+                            svg
+                                path
+                                    fill: rgba(255,255,255,.3)  
+
 
 .error
     font-size: 2rem

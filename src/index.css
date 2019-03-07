@@ -27,6 +27,6 @@ button, button:focus, input, input:focus, a, a:focus, a:active {
   outline: none;
 }
 
-a, a:visited, a:active {
+a, a:visited, a:active, a:link {
   text-decoration: none;
 }

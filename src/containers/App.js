@@ -23,10 +23,8 @@ class App extends Component {
     .catch(error => this.props.getBackground(bg, 'eberhard grossgasteiger', 'https://www.pexels.com/@eberhardgross'));
     
     // Get Stock Photos
-    //this.props.getStockPhotos();
-    console.log(localStorage);
-    //setTimeout(this.props.getStockPhotos, 5000);
-
+    this.props.getStockPhotos();
+    
     // MenuHandler
     window.onscroll = function () {
       const nav = document.querySelector('.navigation');
