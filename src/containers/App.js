@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GET_BACKGROUND_IMAGE, GET_STOCK_PHOTOS, fetchPhotos } from '../store/actions';
+import { GET_BACKGROUND_IMAGE, fetchPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import MainSection from '../components/MainSection/MainSection';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
@@ -23,7 +23,9 @@ class App extends Component {
     .catch(error => this.props.getBackground(bg, 'eberhard grossgasteiger', 'https://www.pexels.com/@eberhardgross'));
     
     // Get Stock Photos
-    this.props.getStockPhotos();
+    //this.props.getStockPhotos();
+    console.log(localStorage);
+    //setTimeout(this.props.getStockPhotos, 5000);
 
     // MenuHandler
     window.onscroll = function () {
@@ -37,8 +39,8 @@ class App extends Component {
           document.body.clientHeight, document.documentElement.clientHeight
       );
 
-      if(window.pageYOffset > scrollHeight - 1600)
-        self.props.getStockPhotos();
+      //if(window.pageYOffset > scrollHeight - 1600)
+        //self.props.getStockPhotos();
     };
 
   }
@@ -52,7 +54,8 @@ class App extends Component {
                      photographerUrl={this.props.photographerUrl} />
         <StockPhotos colOne={this.props.colOne}
                      colTwo={this.props.colTwo}
-                     colThree={this.props.colThree} />
+                     colThree={this.props.colThree}
+                     isConnected={this.props.isConnected} />
       </Aux>
     );
   }
@@ -69,7 +72,8 @@ const mapStateToProps = state => {
     background: state.backgroundImage,
     colOne: state.stockPhotosColOne,
     colTwo: state.stockPhotosColTwo,
-    colThree: state.stockPhotosColThree
+    colThree: state.stockPhotosColThree,
+    isConnected: state.isConnected
   };
 };
 
