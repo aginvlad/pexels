@@ -46,7 +46,7 @@
 
                 &:hover
                    .stock-photos__gallery__column__item__overlay 
-                       opacity: 1
+                       visibility: visible
             
                 &__overlay
                     position: absolute
@@ -58,7 +58,7 @@
                     width: 100%
                     font-size: 1.6rem
                     color: #eee
-                    opacity: 0
+                    visibility: hidden
                     transition: opacity .2s
 
                     &:hover
@@ -103,9 +103,8 @@
                             left: -.3rem
                             pointer-events: none
                         &:hover
-                            svg
-                                path
-                                    fill: rgba(255,255,255,.3)  
+                            path
+                                fill: rgba(255,255,255,.3)  
 
 
 .error
@@ -132,6 +131,10 @@
         left: 0
         border-radius: 50%
         animation: like-red .4s
+
+.stock-photos__gallery__column__item__overlay 
+    .stock-overlay-like-button--liked
+        visibility: visible
 
 @keyframes like-red
     0%
