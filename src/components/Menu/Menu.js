@@ -2,10 +2,14 @@ import React from 'react';
 import SearchBox from '../MainSection/SearchBox';
 import './Menu.sass';
 
-const menu = () => {
-
+const menu = (props) => {
+    const mode = props.mode === 'transparent' ?
+                 'navigation navbar--transparent' 
+                 :
+                 'navigation navbar';
+                          
     return(
-        <nav className="navigation navbar--transparent">
+        <nav className={mode}>
             <div className="navigation__logo">
                 <a className="navigation__logo__link">
                     <div className="navigation__logo__link__icon">

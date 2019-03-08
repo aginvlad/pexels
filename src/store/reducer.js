@@ -13,6 +13,9 @@ const initialState = {
                          JSON.parse(localStorage.getItem('stockPhotosColThree'))
                          :
                          [],
+    categoryPhotosColOne: [],
+    categoryPhotosColTwo: [],
+    categoryPhotosColThree: [],
     page: localStorage.getItem('page') ? +localStorage.getItem('page') : 1,
     isConnected: true,
     likes: localStorage.getItem('likes') ? 
@@ -55,6 +58,18 @@ const reducer = (state = initialState, action) => {
                 stockPhotosColOne: updColOne,
                 stockPhotosColTwo: updColTwo,  
                 stockPhotosColThree: updColThree,
+                isConnected: action.payload.connection
+            }
+        case actions.GET_CATEGORY_PHOTOS:
+            return {
+                ...state,
+                page: updPage,
+                categoryPhotosColOne: state.categoryPhotosColOne
+                                      .concat(action.payload.photosColOne),
+                categoryPhotosColTwo: state.categoryPhotosColTwo
+                                      .concat(action.payload.photosColTwo),  
+                categoryPhotosColThree: state.categoryPhotosColThree
+                                        .concat(action.payload.photosColThree),
                 isConnected: action.payload.connection
             }
         case actions.CONNECTION_ERROR:
