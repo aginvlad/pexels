@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { GET_BACKGROUND_IMAGE, fetchPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import MainSection from '../components/MainSection/MainSection';
-import StockPhotos from '../components/StockPhotos/StockPhotos';
+import StockPhotos from './StockPhotos/StockPhotos';
 import Aux from '../hoc/Aux';
 import { toConnect } from '../store/connection';
 import bg from '../assets/bg.jpeg';
@@ -50,10 +50,7 @@ class App extends Component {
         <MainSection bg={this.props.background}
                      photographer={this.props.photographer}
                      photographerUrl={this.props.photographerUrl} />
-        <StockPhotos colOne={this.props.colOne}
-                     colTwo={this.props.colTwo}
-                     colThree={this.props.colThree}
-                     isConnected={this.props.isConnected} />
+        <StockPhotos />
       </Aux>
     );
   }
@@ -67,11 +64,7 @@ const mapStateToProps = state => {
   return {
     photographer: state.photographer,
     photographerUrl: state.photographerUrl,
-    background: state.backgroundImage,
-    colOne: state.stockPhotosColOne,
-    colTwo: state.stockPhotosColTwo,
-    colThree: state.stockPhotosColThree,
-    isConnected: state.isConnected
+    background: state.backgroundImage
   };
 };
 

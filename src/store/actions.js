@@ -3,6 +3,7 @@ import { toConnect } from './connection';
 export const GET_BACKGROUND_IMAGE = 'GET_BACKGROUND_IMAGE';
 export const GET_STOCK_PHOTOS     = 'GET_STOCK_PHOTOS';
 export const CONNECTION_ERROR     = 'CONNECTION_ERROR';
+export const UPDATE_LIKES         = 'UPDATE_LIKES';
 
 export const fetchPhotos = () => {
 

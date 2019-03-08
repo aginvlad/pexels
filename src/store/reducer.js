@@ -1,4 +1,4 @@
-import { GET_BACKGROUND_IMAGE, GET_STOCK_PHOTOS, CONNECTION_ERROR } from '../store/actions';
+import * as actions from '../store/actions';
 
 const initialState = {
     stockPhotosColOne:  localStorage.getItem('stockPhotosColOne') ? 
@@ -14,20 +14,24 @@ const initialState = {
                          :
                          [],
     page: localStorage.getItem('page') ? +localStorage.getItem('page') : 1,
-    isConnected: true
+    isConnected: true,
+    likes: localStorage.getItem('likes') ? 
+           new Map( JSON.parse(localStorage.getItem('likes')) )
+           :
+           new Map()
 };
 
 const reducer = (state = initialState, action) => {
     switch( action.type ) {
-        case GET_BACKGROUND_IMAGE:
+        case actions.GET_BACKGROUND_IMAGE:
             return {
                 ...state,
                 photographer: action.payload.photographer,
                 photographerUrl: action.payload.photographerUrl,
                 backgroundImage: action.payload.background
             }
-        case GET_STOCK_PHOTOS:
-            let updPage     = state.page + 1,
+        case actions.GET_STOCK_PHOTOS:
+            const updPage     = state.page + 1,
                 updColOne   = state.stockPhotosColOne
                                 .concat(action.payload.photosColOne),
                 updColTwo   = state.stockPhotosColTwo
@@ -53,10 +57,17 @@ const reducer = (state = initialState, action) => {
                 stockPhotosColThree: updColThree,
                 isConnected: action.payload.connection
             }
-        case CONNECTION_ERROR:
+        case actions.CONNECTION_ERROR:
             return {
                 ...state,
                 isConnected: action.payload
+            }
+        case actions.UPDATE_LIKES:
+            const updLikes = action.payload.updLikes;
+            localStorage.setItem('likes', JSON.stringify( Array.from(updLikes.entries()) ));
+            return {
+                ...state,
+                likes: updLikes
             }
         default:
             return state;
