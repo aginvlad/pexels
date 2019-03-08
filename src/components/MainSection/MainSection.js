@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SearchBox from './SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 import Suggested from './Suggested';
 import BackgroundAuthor from './BackgroundAuthor';
 

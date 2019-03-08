@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchCategoryPhotos } from '../store/actions';
+import { RESET_CATEGORY_PHOTOS, fetchCategoryPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
-import StockPhotos from '../containers/StockPhotos/StockPhotos';
+import StockPhotos from '../components/StockPhotos/StockPhotos';
 import Aux from '../hoc/Aux';
 
 import './Category.sass';
 
 class Category extends Component {
+    constructor() {
+        super();
+        this.state = {
+            query: '',
+            searchfield: '',
+            title: ''
+        };
+
+    }
+    componentWillMount() {
+        window.onscroll = null;
+        let query;
+        if(this.props.location['pathname'].length > 8) {
+            query = this.props.location['pathname'].slice(8);
+            this.setState({ query: query.replace(/ /g, '%20'),
+                            searchfield: query,
+                            title: query.split(' ')
+                                .map(el => el[0].toUpperCase() + el.slice(1))
+                                .join(' ')
+            });
+        }
+
+    }
     componentDidMount() {
-        document.querySelector('.searchbox-input').value = 'summer';
-        this.props.getCategoryPhotos('summer');
+        this.props.resetCategoryPhotos();
+        document.querySelector('.searchbox-input').value = this.state.searchfield;
+        this.props.getCategoryPhotos(this.state.query);
     }
     render() {
         return (
             <Aux>
-                <Menu />
+                <Menu initialQuery={this.state.searchfield} />
                 <main className="category">
                     <section className="category-photos">
-                        <h2 className="title">Summer Pictures</h2>
+                        <h2 className="title">{this.state.title} Pictures</h2>
                         <p className="category-photos__suggestions">
                             Related searches:
                             <a className="category-photos__suggestions__link" href="/">love</a>
@@ -28,9 +52,13 @@ class Category extends Component {
                             <a className="category-photos__suggestions__link" href="/">sun</a>
                             <a className="category-photos__suggestions__link" href="/">winter</a>
                         </p>
-                        <StockPhotos colOne={this.props.colOne}
-                                     colTwo={this.props.colTwo}
-                                     colThree={this.props.colThree} />
+                        {this.props.isConnected ?
+                            <StockPhotos colOne={this.props.colOne}
+                                         colTwo={this.props.colTwo}
+                                         colThree={this.props.colThree} />
+                            :
+                            <h3 className="error-title">Sorry, server doesn't respond. Please, try later!</h3>
+                        }
                     </section>
                 </main>
             </Aux>
@@ -46,13 +74,17 @@ const mapStateToProps = state => {
     return {
         colOne: state.categoryPhotosColOne,
         colTwo: state.categoryPhotosColTwo,
-        colThree: state.categoryPhotosColThree
+        colThree: state.categoryPhotosColThree,
+        isConnected: state.isConnected
     };
 };
   
 const mapDispatchToProps = dispatch => {
     return {
-      getCategoryPhotos: (query) => dispatch(fetchCategoryPhotos(query))
+      getCategoryPhotos: (query) => dispatch(fetchCategoryPhotos(query)),
+      resetCategoryPhotos: () => dispatch({
+        type: RESET_CATEGORY_PHOTOS
+      })
     };
 };
   

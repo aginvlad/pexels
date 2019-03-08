@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import { GET_BACKGROUND_IMAGE, fetchStockPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import MainSection from '../components/MainSection/MainSection';
-import StockPhotos from './StockPhotos/StockPhotos';
+import StockPhotos from '../components/StockPhotos/StockPhotos';
 import { toConnect } from '../store/connection';
 import Aux from '../hoc/Aux';
 import bg from '../assets/bg.jpeg';
 
 class HomePage extends Component {
+  componentWillMount() {
+    this.props.history.push('/');
+
+  }
   componentDidMount() {
     let self = this;
 

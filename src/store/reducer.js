@@ -72,6 +72,13 @@ const reducer = (state = initialState, action) => {
                                         .concat(action.payload.photosColThree),
                 isConnected: action.payload.connection
             }
+        case actions.RESET_CATEGORY_PHOTOS:
+            return {
+                ...state,
+                categoryPhotosColOne: [],
+                categoryPhotosColTwo: [],
+                categoryPhotosColThree: []
+            }
         case actions.CONNECTION_ERROR:
             return {
                 ...state,

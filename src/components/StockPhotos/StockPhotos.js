@@ -17,6 +17,10 @@ class StockPhotos extends Component {
     }
 
     render() {
+        if(this.props.colOne.length === 0)
+            return(
+                <h3 className="error-title">Sorry, no pictures found! Try more unspecific terms</h3>
+            );
         return(
             <div className="stock-photos__gallery">
                 <div className="stock-photos__gallery__column">

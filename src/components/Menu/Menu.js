@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBox from '../MainSection/SearchBox';
+import SearchBox from '../SearchBox/SearchBox';
 import './Menu.sass';
 
 const menu = (props) => {
@@ -23,7 +23,7 @@ const menu = (props) => {
                     </div>
                 </a>
             </div>
-            <SearchBox useClass="searchbox searchbox--menu" color="#fff"/>
+            <SearchBox initialQuery={props.initialQuery} useClass="searchbox searchbox--menu" color="#fff"/>
         </nav>
     );
 };

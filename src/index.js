@@ -7,7 +7,7 @@ import reducer from './store/reducer';
 import './index.sass';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route } from 'react-router-dom'; 
+import { BrowserRouter } from 'react-router-dom'; 
 
 const store = createStore(reducer, applyMiddleware(thunk));
 
