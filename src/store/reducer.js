@@ -69,6 +69,7 @@ const reducer = (state = initialState, action) => {
         case actions.GET_CATEGORY_PHOTOS:
             return {
                 ...state,
+                page: state.page + 1,
                 isLoading: false,
                 categoryPhotosColOne: state.categoryPhotosColOne
                                       .concat(action.payload.photosColOne),
