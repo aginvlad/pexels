@@ -1,0 +1,94 @@
+.modal
+    position: fixed
+    top: 4rem
+    left: 4rem
+    display: flex
+    width: calc(100% - 80px)
+    height: 66rem
+    background-color: #fff
+    overflow: hidden
+    z-index: 500
+
+    &-wrapper
+        display: flex
+        justify-content: center
+        padding: 2rem
+        width: 100%
+        max-width: 1040px
+        height: 100%
+        img
+            width: auto
+            height: 100%
+
+    &-sidebar
+        position: relative
+        width: 34rem
+        padding-top: 5rem
+
+        &__btn
+            display: flex
+            width: calc(100% - 4rem)
+            border-radius: 3px
+            &__download, &__more, .modal-sidebar__form-btn
+                font-size: 1.6rem
+                color: #fff
+                background-color: #05a081
+                border: 1px solid #036f59
+                cursor: pointer
+                &:hover
+                    background-color: #036f59
+            &__download
+                display: flex
+                align-items: center
+                justify-content: center
+                width: calc(100% - 4.6rem)
+                min-width: 4.6rem
+                padding: 1rem 1.6rem
+                line-height: 1.65
+                text-align: center
+                border-top-left-radius: inherit
+                border-bottom-left-radius: inherit
+
+            &__more
+                width: 4.6rem
+                border-left-color: transparent
+                border-top-right-radius: inherit
+                border-bottom-right-radius: inherit
+            
+            a, a:active, a:focus, a:visited
+                color: #fff
+
+        &__form
+            position: absolute
+            top: 10rem
+            right: 4rem
+            display: none
+            padding: 0 1rem
+            width: 26rem
+            height: 20rem
+            margin-top: 15px
+            font-size: 1rem
+            text-align: left
+            border-radius: 3px
+            background: #fff
+            box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 1px 3px 0 rgba(0,0,0,.25)
+            color: #333
+            z-index: 100
+
+            h3
+                font-weight: 400
+                font-size: 1.8rem
+
+            .select-size
+                padding: 0
+                &__item
+                    display: block
+                    font-size: 1.6rem
+                    label
+                        cursor: pointer
+            &-btn
+                position: absolute
+                padding: .6rem 1.2rem
+                right: 1rem
+                bottom: 1rem
+                border-radius: 3px
