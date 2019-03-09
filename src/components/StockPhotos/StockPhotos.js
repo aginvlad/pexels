@@ -17,9 +17,13 @@ class StockPhotos extends Component {
     }
 
     render() {
+        if(this.props.isLoading)
+            return(
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            );
         if(this.props.colOne.length === 0)
             return(
-                <h3 className="error-title">Sorry, no pictures found! Try more unspecific terms</h3>
+                <h2 className="error-title">Sorry, no pictures found! Try more unspecific terms</h2>
             );
         return(
             <div className="stock-photos__gallery">
@@ -124,7 +128,8 @@ class StockPhotos extends Component {
 
 const mapStateToProps = state => {
     return {
-        likes: state.likes
+        likes: state.likes,
+        isLoading: state.isLoading
     };
   };
   

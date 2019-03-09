@@ -6,13 +6,14 @@ import Menu from '../components/Menu/Menu';
 import MainSection from '../components/MainSection/MainSection';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
 import { toConnect } from '../store/connection';
+import { getSuggestions } from '../store/suggestions';
 import Aux from '../hoc/Aux';
 import bg from '../assets/bg.jpeg';
 
 class HomePage extends Component {
   componentWillMount() {
     this.props.history.push('/');
-
+    this.suggestions = getSuggestions(7);
   }
   componentDidMount() {
     let self = this;
@@ -55,7 +56,8 @@ class HomePage extends Component {
                 <main>
                     <MainSection bg={this.props.background}
                                 photographer={this.props.photographer}
-                                photographerUrl={this.props.photographerUrl} />
+                                photographerUrl={this.props.photographerUrl}
+                                links={this.suggestions} />
                     <section className="stock-photos">
                         <h2 className="title">Free Stock Photos</h2>
                         <StockPhotos colOne={this.props.colOne}

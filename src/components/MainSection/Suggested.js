@@ -1,33 +1,20 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './Suggested.sass';
 
-const suggested = () => {
+const suggested = (props) => {
     return (
         <div className="suggested">
             <span>Suggested</span>
             <ul className="suggested-container">
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">flower</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">love</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">art</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">wood</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">wall</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">rose</a>
-                </li>
-                <li className="suggested-container__item">
-                    <a href="#" className="suggested-container__item__tag">more</a>
-                </li>
+                {props.links.map(el => {
+                    return(
+                        <li className="suggested-container__item">
+                            <NavLink to={`/search/${el}`} activeClassName="suggested-container__item__tag">{el}</NavLink>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

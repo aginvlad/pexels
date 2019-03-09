@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { NavLink } from 'react-router-dom';
 import { RESET_CATEGORY_PHOTOS, fetchCategoryPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
 import Aux from '../hoc/Aux';
-
+import { getSuggestions } from '../store/suggestions';
 import './Category.sass';
 
 class Category extends Component {
@@ -30,7 +30,7 @@ class Category extends Component {
                                 .join(' ')
             });
         }
-
+        this.relatedSearches = getSuggestions(5);
     }
     componentDidMount() {
         this.props.resetCategoryPhotos();
@@ -46,11 +46,15 @@ class Category extends Component {
                         <h2 className="title">{this.state.title} Pictures</h2>
                         <p className="category-photos__suggestions">
                             Related searches:
-                            <a className="category-photos__suggestions__link" href="/">love</a>
-                            <a className="category-photos__suggestions__link" href="/">beach</a>
-                            <a className="category-photos__suggestions__link" href="/">nature</a>
-                            <a className="category-photos__suggestions__link" href="/">sun</a>
-                            <a className="category-photos__suggestions__link" href="/">winter</a>
+                            <ul className="category-photos__suggestions__links">
+                                {this.relatedSearches.map(el => {
+                                    return(
+                                        <li className="category-photos__suggestions__link">
+                                            <NavLink to={`/search/${el}`} >{el}</NavLink>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         </p>
                         {this.props.isConnected ?
                             <StockPhotos colOne={this.props.colOne}

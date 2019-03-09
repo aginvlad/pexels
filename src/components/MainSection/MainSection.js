@@ -15,7 +15,7 @@ const mainSection = (props) => {
             <div className="main-section-content">
                 <h1>The best free stock photos shared by talented photographers.</h1>
                 <SearchBox useClass="searchbox" color="#222" />
-                <Suggested />
+                <Suggested links={props.links}/>
             </div>
             <BackgroundAuthor photographer={props.photographer}
                               photographerUrl={props.photographerUrl} />
