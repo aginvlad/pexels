@@ -8,9 +8,9 @@ const suggested = (props) => {
         <div className="suggested">
             <span>Suggested</span>
             <ul className="suggested-container">
-                {props.links.map(el => {
+                {props.links.map((el, i) => {
                     return(
-                        <li className="suggested-container__item">
+                        <li key={'suggested-' + i} className="suggested-container__item">
                             <NavLink to={`/search/${el}`} activeClassName="suggested-container__item__tag">{el}</NavLink>
                         </li>
                     );

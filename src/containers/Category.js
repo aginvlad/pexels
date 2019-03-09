@@ -44,18 +44,18 @@ class Category extends Component {
                 <main className="category">
                     <section className="category-photos">
                         <h2 className="title">{this.state.title} Pictures</h2>
-                        <p className="category-photos__suggestions">
+                        <div className="category-photos__suggestions">
                             Related searches:
                             <ul className="category-photos__suggestions__links">
-                                {this.relatedSearches.map(el => {
+                                {this.relatedSearches.map((el, i) => {
                                     return(
-                                        <li className="category-photos__suggestions__link">
+                                        <li key={'catsaggestion-' + i} className="category-photos__suggestions__link">
                                             <NavLink to={`/search/${el}`} >{el}</NavLink>
                                         </li>
                                     );
                                 })}
                             </ul>
-                        </p>
+                        </div>
                         {this.props.isConnected ?
                             <StockPhotos colOne={this.props.colOne}
                                          colTwo={this.props.colTwo}
