@@ -71,12 +71,11 @@ class StockPhotos extends Component {
                 <div className="stock-photos__gallery">
                     <div className="stock-photos__gallery__column">
                         {this.props.colOne.map(el => {
-                            const prefix = (new Date()).getDate();
                             el.isLiked = this.props.likes.get(`${el.id}`) ? 'stock-overlay-like-button stock-overlay-like-button--liked'
                                 : 
                             'stock-overlay-like-button';
                             return (
-                                <div key={el.id + prefix} className="stock-photos__gallery__column__item">
+                                <div key={el.id} className="stock-photos__gallery__column__item">
                                     <img large={el.src.large} medium={el.src.medium} small={el.src.small} src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} alt=" "
                                     onClick={e => this.showModalHandler(e.target)}/>  
                                     <div className="stock-photos__gallery__column__item__overlay">
@@ -103,13 +102,13 @@ class StockPhotos extends Component {
                     </div>
                     <div className="stock-photos__gallery__column">
                         {this.props.colTwo.map(el => {
-                            const prefix = (new Date()).getDate();
                             el.isLiked = this.props.likes.get(`${el.id}`) ? 'stock-overlay-like-button stock-overlay-like-button--liked'
                                 : 
                             'stock-overlay-like-button';
                             return (
-                                <div key={el.id + prefix} className="stock-photos__gallery__column__item">
-                                    <img src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} alt=" "/>  
+                                <div key={el.id} className="stock-photos__gallery__column__item">
+                                    <img large={el.src.large} medium={el.src.medium} small={el.src.small} src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} alt=" "
+                                    onClick={e => this.showModalHandler(e.target)}/>  
                                     <div className="stock-photos__gallery__column__item__overlay">
                                         <a href={el.photographer_url} className="stock-photos__gallery__column__item__overlay__photographer">
                                             {el.photographer}
@@ -134,13 +133,13 @@ class StockPhotos extends Component {
                     </div>
                     <div className="stock-photos__gallery__column">
                         {this.props.colThree.map(el => {
-                            const prefix = (new Date()).getDate();
                             el.isLiked = this.props.likes.get(`${el.id}`) ? 'stock-overlay-like-button stock-overlay-like-button--liked'
                                 : 
                             'stock-overlay-like-button';
                             return (
-                                <div key={el.id + prefix} className="stock-photos__gallery__column__item">
-                                    <img src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} alt=" "/>  
+                                <div key={el.id} className="stock-photos__gallery__column__item">
+                                    <img large={el.src.large} medium={el.src.medium} small={el.src.small} src={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500`} srcSet={`${el.src.original}?auto=compress&cs=tinysrgb&dpr=1&w=500 1x, ${el.src.original}?auto=compress&cs=tinysrgb&dpr=2&w=500 2x`} alt=" "
+                                    onClick={e => this.showModalHandler(e.target)}/>  
                                     <div className="stock-photos__gallery__column__item__overlay">
                                         <a href={el.photographer_url} className="stock-photos__gallery__column__item__overlay__photographer">
                                             {el.photographer}
