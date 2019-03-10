@@ -1,22 +1,13 @@
 import * as actions from '../store/actions';
 
 const initialState = {
-    stockPhotosColOne:  localStorage.getItem('stockPhotosColOne') ? 
-                        JSON.parse(localStorage.getItem('stockPhotosColOne'))
-                        :
-                        [],
-    stockPhotosColTwo: localStorage.getItem('stockPhotosColTwo') ? 
-                       JSON.parse(localStorage.getItem('stockPhotosColTwo'))
-                       :
-                       [],
-    stockPhotosColThree: localStorage.getItem('stockPhotosColThree') ? 
-                         JSON.parse(localStorage.getItem('stockPhotosColThree'))
-                         :
-                         [],
+    stockPhotosColOne: [],
+    stockPhotosColTwo: [],
+    stockPhotosColThree: [],
     categoryPhotosColOne: [],
     categoryPhotosColTwo: [],
     categoryPhotosColThree: [],
-    page: localStorage.getItem('page') ? +localStorage.getItem('page') : 1,
+    page: 1,
     isConnected: true,
     isLoading: false,
     likes: localStorage.getItem('likes') ? 
@@ -35,30 +26,15 @@ const reducer = (state = initialState, action) => {
                 backgroundImage: action.payload.background
             }
         case actions.GET_STOCK_PHOTOS:
-            const updPage     = state.page + 1,
-                updColOne   = state.stockPhotosColOne
-                                .concat(action.payload.photosColOne),
-                updColTwo   = state.stockPhotosColTwo
-                                .concat(action.payload.photosColTwo),
-                updColThree = state.stockPhotosColThree
-                              .concat(action.payload.photosColThree);
-
-            if(state.stockPhotosColOne.length <= 10) {
-                localStorage.setItem('page', `${updPage}`);
-                localStorage.setItem('stockPhotosColOne', 
-                                     JSON.stringify(updColOne));
-                localStorage.setItem('stockPhotosColTwo',
-                                     JSON.stringify(updColTwo));
-                localStorage.setItem('stockPhotosColThree', 
-                                     JSON.stringify(updColThree));
-            }
-
             return {
                 ...state,
-                page: updPage,
-                stockPhotosColOne: updColOne,
-                stockPhotosColTwo: updColTwo,  
-                stockPhotosColThree: updColThree,
+                page: state.page + 1,
+                stockPhotosColOne: state.stockPhotosColOne
+                                   .concat(action.payload.photosColOne),
+                stockPhotosColTwo: state.stockPhotosColTwo
+                                   .concat(action.payload.photosColTwo),  
+                stockPhotosColThree: state.stockPhotosColThree
+                                     .concat(action.payload.photosColThree),
                 isConnected: action.payload.connection
             }
         case actions.LOADING_CATEGORY_PHOTOS:
