@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { UPDATE_LIKES } from '../../store/actions';
 import Modal from '../../components/UI/Modal/Modal';
-import Aux from '../../hoc/Aux';
 
 import './StockPhotos.sass';
 
@@ -64,7 +63,7 @@ class StockPhotos extends Component {
                 <h2 className="error-title">Sorry, no pictures found! Try more unspecific terms</h2>
             );
         return(
-            <Aux>
+            <>
                 <Modal show={this.state.modal} showOtherSize={this.showOtherSizeHandler}
                 downloadSelectedPhoto={this.downloadSelectedPhotoHandler} 
                 closeModal={this.closeModalHandler} photos={this.state.photosUrl} />
@@ -163,7 +162,7 @@ class StockPhotos extends Component {
                         }
                     </div>
                 </div>
-            </Aux>
+            </>
         );
     }
 };

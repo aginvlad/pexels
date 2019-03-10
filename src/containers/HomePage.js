@@ -7,7 +7,6 @@ import MainSection from '../components/MainSection/MainSection';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
 import { toConnect } from '../store/connection';
 import { getSuggestions } from '../store/suggestions';
-import Aux from '../hoc/Aux';
 import bg from '../assets/bg.jpeg';
 
 class HomePage extends Component {
@@ -51,7 +50,7 @@ class HomePage extends Component {
 
   render() {
     return (
-            <Aux>
+            <>
                 <Menu mode="transparent" />
                 <main>
                     <MainSection bg={this.props.background}
@@ -65,7 +64,7 @@ class HomePage extends Component {
                                      colThree={this.props.colThree} />
                     </section>
                 </main>
-          </Aux>
+          </>
     );
   }
 }

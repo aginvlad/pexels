@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { RESET_CATEGORY_PHOTOS, fetchCategoryPhotos } from '../store/actions';
 import Menu from '../components/Menu/Menu';
 import StockPhotos from '../components/StockPhotos/StockPhotos';
-import Aux from '../hoc/Aux';
 import { getSuggestions } from '../store/suggestions';
 import './Category.sass';
 
@@ -39,7 +38,7 @@ class Category extends Component {
     }
     render() {
         return (
-            <Aux>
+            <>
                 <Menu initialQuery={this.state.searchfield} />
                 <main className="category">
                     <section className="category-photos">
@@ -65,7 +64,7 @@ class Category extends Component {
                         }
                     </section>
                 </main>
-            </Aux>
+            </>
         );
     }
 }

@@ -1,12 +1,11 @@
 import React from 'react';
 import Backdrop from '../Backdrop/Backdrop';
-import Aux from '../../../hoc/Aux';
 import './Modal.sass';
 
 const modal = (props) => {
     const photo = props.photos.get('Original');
     return(
-        <Aux>
+        <>
             <Backdrop show={props.show} closeModal={props.closeModal}/>
             <div className="modal"
             style={{
@@ -56,7 +55,7 @@ const modal = (props) => {
                     </div>
                 </div>
             </div>
-        </Aux>
+        </>
     );
 } 
 
