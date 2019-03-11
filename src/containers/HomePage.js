@@ -18,53 +18,81 @@ class HomePage extends Component {
     let self = this;
 
     //Get Background
-    const randNum = Math.floor((Math.random() * 1000) + 1);
-    fetch(`https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`, toConnect)
-    .then(result => result.json())
-    .then(data => {
-      data = data.photos[0];
-      this.props.getBackground(data.src.original, data.photographer, data.photographer_url)
-    })
-    .catch(error => this.props.getBackground(bg, 'eberhard grossgasteiger', 'https://www.pexels.com/@eberhardgross'));
-    
+    const randNum = Math.floor(Math.random() * 1000 + 1);
+    fetch(
+      `https://api.pexels.com/v1/curated?per_page=1&page=${randNum}`,
+      toConnect
+    )
+      .then(result => result.json())
+      .then(data => {
+        data = data.photos[0];
+        this.props.getBackground(
+          data.src.original,
+          data.photographer,
+          data.photographer_url
+        );
+      })
+      .catch(error =>
+        this.props.getBackground(
+          bg,
+          'eberhard grossgasteiger',
+          'https://www.pexels.com/@eberhardgross'
+        )
+      );
+
     // Get Stock Photos
     this.props.getStockPhotos();
-    
+
     // MenuHandler
-    window.onscroll = function () {
+    window.onscroll = function() {
       const nav = document.querySelector('.navigation');
-      this.pageYOffset > 105 ?
-        nav.classList.remove('navbar--transparent') :
-        nav.classList.add('navbar--transparent'); 
+      this.pageYOffset > 105
+        ? nav.classList.remove('navbar--transparent')
+        : nav.classList.add('navbar--transparent');
       let scrollHeight = Math.max(
-          document.body.scrollHeight, document.documentElement.scrollHeight,
-          document.body.offsetHeight, document.documentElement.offsetHeight,
-          document.body.clientHeight, document.documentElement.clientHeight
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.body.clientHeight,
+        document.documentElement.clientHeight
       );
 
       //if(window.pageYOffset > scrollHeight - 1600)
-        //self.props.getStockPhotos();
+      //self.props.getStockPhotos();
     };
-
   }
 
   render() {
     return (
-            <>
-                <Menu mode="transparent" />
-                <main>
-                    <MainSection bg={this.props.background}
-                                photographer={this.props.photographer}
-                                photographerUrl={this.props.photographerUrl}
-                                links={this.suggestions} />
-                    <section className="stock-photos">
-                        <h2 className="title">Free Stock Photos</h2>
-                        <StockPhotos colOne={this.props.colOne}
-                                     colTwo={this.props.colTwo}
-                                     colThree={this.props.colThree} />
-                    </section>
-                </main>
-          </>
+      <>
+        <Menu mode="transparent" />
+        <main>
+          <MainSection
+            bg={this.props.background}
+            photographer={this.props.photographer}
+            photographerUrl={this.props.photographerUrl}
+            links={this.suggestions}
+          />
+          <section className="stock-photos">
+            <h2 className="title">Free Stock Photos</h2>
+            <StockPhotos
+              colOne={this.props.stockPhotos.slice(
+                0,
+                this.props.stockPhotos.length / 3
+              )}
+              colTwo={this.props.stockPhotos.slice(
+                this.props.stockPhotos.length / 3,
+                (2 * this.props.stockPhotos.length) / 3
+              )}
+              colThree={this.props.stockPhotos.slice(
+                (2 * this.props.stockPhotos.length) / 3,
+                this.props.stockPhotos.length
+              )}
+            />
+          </section>
+        </main>
+      </>
     );
   }
 }
@@ -78,24 +106,26 @@ const mapStateToProps = state => {
     photographer: state.photographer,
     photographerUrl: state.photographerUrl,
     background: state.backgroundImage,
-    colOne: state.stockPhotosColOne,
-    colTwo: state.stockPhotosColTwo,
-    colThree: state.stockPhotosColThree
+    stockPhotos: state.stockPhotos
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBackground: (background, photographer, photographerUrl) => dispatch({
-      type: GET_BACKGROUND_IMAGE,
-      payload: {
-        photographer,
-        photographerUrl,
-        background 
-      }
-    }),
+    getBackground: (background, photographer, photographerUrl) =>
+      dispatch({
+        type: GET_BACKGROUND_IMAGE,
+        payload: {
+          photographer,
+          photographerUrl,
+          background
+        }
+      }),
     getStockPhotos: () => dispatch(fetchStockPhotos())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
