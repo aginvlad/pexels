@@ -22,8 +22,6 @@ class HomePage extends Component {
     };
   }
   componentDidMount() {
-    let self = this;
-
     this.props.getBackground();
     this.props.getStockPhotos();
 
