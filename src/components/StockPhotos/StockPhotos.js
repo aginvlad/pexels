@@ -57,7 +57,7 @@ class StockPhotos extends Component {
   }
 
   render() {
-    if (this.props.isLoading)
+    if (this.props.isLoading && this.props.colOne.length === 0)
       return (
         <div className="lds-ellipsis">
           <div />
@@ -293,6 +293,14 @@ class StockPhotos extends Component {
             })}
           </div>
         </div>
+        {this.props.isLoading ? (
+          <div className="lds-ellipsis">
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        ) : null}
       </>
     );
   }
@@ -302,10 +310,10 @@ class StockPhotos extends Component {
 /*                            Redux Store Handling                            */
 /* ************************************************************************** */
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ likes, isLoading }) => {
   return {
-    likes: state.likes,
-    isLoading: state.isLoading
+    likes,
+    isLoading
   };
 };
 

@@ -15,9 +15,15 @@ class Category extends Component {
       searchfield: '',
       title: ''
     };
+    this.windowScrollHangler = () => {
+      if(window.scrollY > document.body.scrollHeight - 1200 && !this.props.isLoading) {
+        this.props.getStockPhotos();
+        console.log('Time');
+      }
+    };
   }
   componentWillMount() {
-    window.onscroll = null;
+    window.addEventListener('scroll', this.windowScrollHangler);
     let query;
     if (this.props.location['pathname'].length > 8) {
       query = this.props.location['pathname'].slice(8);
@@ -90,10 +96,10 @@ class Category extends Component {
 /*                            Redux Store Handling                            */
 /* ************************************************************************** */
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ categoryPhotos, isConnected }) => {
   return {
-    categoryPhotos: state.categoryPhotos,
-    isConnected: state.isConnected
+    categoryPhotos,
+    isConnected
   };
 };
 
