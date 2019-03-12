@@ -10,26 +10,36 @@ class HomePage extends Component {
   componentWillMount() {
     this.props.history.push('/');
     this.suggestions = getSuggestions(7);
-    this.windowScrollHangler = () => {
+  }
+  componentDidMount() {
+    this.props.getBackground();
+    this.props.getStockPhotos();
+    this.windowScrollHandler = () => {
       const nav = document.querySelector('.navigation');
       window.pageYOffset > 105
         ? nav.classList.remove('navbar--transparent')
         : nav.classList.add('navbar--transparent');
 
-      if(window.scrollY > document.body.scrollHeight - 1200 && !this.props.isLoading) {
+      if (
+        window.scrollY > document.body.scrollHeight - 1200 &&
+        !this.props.isLoading
+      ) {
         this.props.getStockPhotos();
       }
     };
-  }
-  componentDidMount() {
-    this.props.getBackground();
-    this.props.getStockPhotos();
 
     // MenuHandler
-    window.addEventListener('scroll', this.windowScrollHangler);
+    window.addEventListener('scroll', this.windowScrollHandler);
+  }
+  putPhotosIColomns(colNum) {
+    const col = [];
+    for (let i = colNum; i <= this.props.stockPhotos.length - (3 - colNum); i += 3) {
+      col.push(this.props.stockPhotos[i]);
+    }
+    return col;
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.windowScrollHangler);
+    window.removeEventListener('scroll', this.windowScrollHandler);
   }
   render() {
     return (
@@ -45,18 +55,10 @@ class HomePage extends Component {
           <section className="stock-photos">
             <h2 className="title">Free Stock Photos</h2>
             <StockPhotos
-              colOne={this.props.stockPhotos.slice(
-                0,
-                this.props.stockPhotos.length / 3
-              )}
-              colTwo={this.props.stockPhotos.slice(
-                this.props.stockPhotos.length / 3,
-                (2 * this.props.stockPhotos.length) / 3
-              )}
-              colThree={this.props.stockPhotos.slice(
-                (2 * this.props.stockPhotos.length) / 3,
-                this.props.stockPhotos.length
-              )}
+              //for(var i = 0; i < length; i + 3)
+              colOne={this.putPhotosIColomns(0)}
+              colTwo={this.putPhotosIColomns(1)}
+              colThree={this.putPhotosIColomns(2)}
             />
           </section>
         </main>

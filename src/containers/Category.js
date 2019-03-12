@@ -15,15 +15,8 @@ class Category extends Component {
       searchfield: '',
       title: ''
     };
-    this.windowScrollHangler = () => {
-      if(window.scrollY > document.body.scrollHeight - 1200 && !this.props.isLoading) {
-        this.props.getStockPhotos();
-        console.log('Time');
-      }
-    };
   }
   componentWillMount() {
-    window.addEventListener('scroll', this.windowScrollHangler);
     let query;
     if (this.props.location['pathname'].length > 8) {
       query = this.props.location['pathname'].slice(8);
@@ -42,6 +35,29 @@ class Category extends Component {
     this.props.resetCategoryPhotos();
     document.querySelector('.searchbox-input').value = this.state.searchfield;
     this.props.getCategoryPhotos(this.state.query);
+    this.windowScrollHandler = () => {
+      if (
+        window.scrollY > document.body.scrollHeight - 1200 &&
+        !this.props.isLoading
+      ) {
+        this.props.getCategoryPhotos(this.state.query);
+      }
+    };
+    window.addEventListener('scroll', this.windowScrollHandler);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.windowScrollHandler);
+  }
+  putPhotosIColomns(colNum) {
+    const col = [];
+    for (
+      let i = colNum;
+      i <= this.props.categoryPhotos.length - (3 - colNum);
+      i += 3
+    ) {
+      col.push(this.props.categoryPhotos[i]);
+    }
+    return col;
   }
   render() {
     return (
@@ -65,26 +81,11 @@ class Category extends Component {
                 })}
               </ul>
             </div>
-            {this.props.isConnected ? (
-              <StockPhotos
-                colOne={this.props.categoryPhotos.slice(
-                  0,
-                  this.props.categoryPhotos.length / 3
-                )}
-                colTwo={this.props.categoryPhotos.slice(
-                  this.props.categoryPhotos.length / 3,
-                  (2 * this.props.categoryPhotos.length) / 3
-                )}
-                colThree={this.props.categoryPhotos.slice(
-                  (2 * this.props.categoryPhotos.length) / 3,
-                  this.props.categoryPhotos.length
-                )}
-              />
-            ) : (
-              <h3 className="error-title">
-                Sorry, server doesn't respond. Please, try later!
-              </h3>
-            )}
+            <StockPhotos
+              colOne={this.putPhotosIColomns(0)}
+              colTwo={this.putPhotosIColomns(1)}
+              colThree={this.putPhotosIColomns(2)}
+            />
           </section>
         </main>
       </>
@@ -96,10 +97,10 @@ class Category extends Component {
 /*                            Redux Store Handling                            */
 /* ************************************************************************** */
 
-const mapStateToProps = ({ categoryPhotos, isConnected }) => {
+const mapStateToProps = ({ categoryPhotos, isLoading }) => {
   return {
     categoryPhotos,
-    isConnected
+    isLoading
   };
 };
 

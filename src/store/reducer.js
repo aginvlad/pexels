@@ -3,7 +3,8 @@ import * as actions from '../store/actions';
 const initialState = {
   stockPhotos: [],
   categoryPhotos: [],
-  page: 1,
+  stockPage: 1,
+  categoryPage: 1,
   isConnected: true,
   isLoading: false,
   likes: localStorage.getItem('likes')
@@ -23,7 +24,8 @@ const reducer = (state = initialState, action) => {
     case actions.GET_STOCK_PHOTOS:
       return {
         ...state,
-        page: state.page + 1,
+        stockPage: state.stockPage + 1,
+        categoryPage: 1,
         stockPhotos: state.stockPhotos.concat(action.payload.stockPhotos),
         isLoading: false,
         isConnected: action.payload.connection
@@ -36,7 +38,8 @@ const reducer = (state = initialState, action) => {
     case actions.GET_CATEGORY_PHOTOS:
       return {
         ...state,
-        page: state.page + 1,
+        categoryPage: state.categoryPage + 1,
+        stockPage: 1,
         isLoading: false,
         categoryPhotos: state.categoryPhotos.concat(
           action.payload.categoryPhotos

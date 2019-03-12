@@ -57,6 +57,12 @@ class StockPhotos extends Component {
   }
 
   render() {
+    if (!this.props.isConnected)
+      return (
+        <h3 className="error-title">
+          Sorry, server doesn't respond. Please, try later!
+        </h3>
+      );
     if (this.props.isLoading && this.props.colOne.length === 0)
       return (
         <div className="lds-ellipsis">
@@ -310,10 +316,11 @@ class StockPhotos extends Component {
 /*                            Redux Store Handling                            */
 /* ************************************************************************** */
 
-const mapStateToProps = ({ likes, isLoading }) => {
+const mapStateToProps = ({ likes, isLoading, isConnected }) => {
   return {
     likes,
-    isLoading
+    isLoading,
+    isConnected
   };
 };
 

@@ -45,7 +45,9 @@ export const fetchStockPhotos = () => {
   return (dispatch, getStore) => {
     dispatch({ type: LOADING_PHOTOS });
     fetch(
-      `https://api.pexels.com/v1/curated?per_page=15&page=${getStore().page}`,
+      `https://api.pexels.com/v1/curated?per_page=15&page=${
+        getStore().stockPage
+      }`,
       toConnect
     )
       .then(result => result.json())
@@ -68,10 +70,12 @@ export const fetchStockPhotos = () => {
 };
 
 export const fetchCategoryPhotos = query => {
-  return dispatch => {
+  return (dispatch, getStore) => {
     dispatch({ type: LOADING_PHOTOS });
     fetch(
-      `https://api.pexels.com/v1/search?query=${query}&per_page=15&page=1`,
+      `https://api.pexels.com/v1/search?query=${query}&per_page=15&page=${
+        getStore().categoryPage
+      }`,
       toConnect
     )
       .then(result => result.json())
