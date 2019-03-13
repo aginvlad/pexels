@@ -115,7 +115,7 @@ class StockPhotos extends Component {
                   />
                   <div className="stock-photos__gallery__column__item__overlay">
                     <a
-                      href={el.photographer_url}
+                      href={el.photographer_url} target="_blank" rel="noopener noreferrer"
                       className="stock-photos__gallery__column__item__overlay__photographer"
                     >
                       {el.photographer}
@@ -185,7 +185,7 @@ class StockPhotos extends Component {
                   />
                   <div className="stock-photos__gallery__column__item__overlay">
                     <a
-                      href={el.photographer_url}
+                      href={el.photographer_url} target="_blank" rel="noopener noreferrer"
                       className="stock-photos__gallery__column__item__overlay__photographer"
                     >
                       {el.photographer}
@@ -255,7 +255,7 @@ class StockPhotos extends Component {
                   />
                   <div className="stock-photos__gallery__column__item__overlay">
                     <a
-                      href={el.photographer_url}
+                      href={el.photographer_url} target="_blank" rel="noopener noreferrer"
                       className="stock-photos__gallery__column__item__overlay__photographer"
                     >
                       {el.photographer}
