@@ -88,7 +88,7 @@ class StockPhotos extends Component {
           photos={this.state.photosUrl}
         />
         <div className="stock-photos__gallery">
-          <div className="stock-photos__gallery__column">
+          <div id="first-column" className="stock-photos__gallery__column">
             {this.props.colOne.map(el => {
               el.isLiked = this.props.likes.get(`${el.id}`)
                 ? 'stock-overlay-like-button stock-overlay-like-button--liked'
@@ -158,7 +158,7 @@ class StockPhotos extends Component {
               );
             })}
           </div>
-          <div className="stock-photos__gallery__column">
+          <div id="second-column" className="stock-photos__gallery__column">
             {this.props.colTwo.map(el => {
               el.isLiked = this.props.likes.get(`${el.id}`)
                 ? 'stock-overlay-like-button stock-overlay-like-button--liked'
@@ -228,7 +228,7 @@ class StockPhotos extends Component {
               );
             })}
           </div>
-          <div className="stock-photos__gallery__column">
+          <div id="third-column" className="stock-photos__gallery__column">
             {this.props.colThree.map(el => {
               el.isLiked = this.props.likes.get(`${el.id}`)
                 ? 'stock-overlay-like-button stock-overlay-like-button--liked'

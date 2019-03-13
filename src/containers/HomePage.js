@@ -33,7 +33,11 @@ class HomePage extends Component {
   }
   putPhotosIColomns(colNum) {
     const col = [];
-    for (let i = colNum; i <= this.props.stockPhotos.length - (3 - colNum); i += 3) {
+    for (
+      let i = colNum;
+      i <= this.props.stockPhotos.length - (3 - colNum);
+      i += 3
+    ) {
       col.push(this.props.stockPhotos[i]);
     }
     return col;

@@ -17,8 +17,11 @@
             &__item
                 position: relative
                 margin-bottom: 2rem
+                object-fit: cover 
                 cursor: pointer
-                
+                img
+                    width: 100%
+                    height: 100%
                 &::before
                     content: ""
                     pointer-events: none
@@ -135,3 +138,22 @@
     100%
         transform: scale(3)
         background: transparent
+
+@media only screen and (max-width: 780px)
+    .stock-photos
+        width: 100%
+        &__gallery
+            flex-wrap: wrap
+            padding: 0 6rem
+            &__column
+                justify-content: center
+                flex-basis: 100%
+                margin: 0 !important
+
+@media only screen and (max-width: 560px)
+    .stock-photos
+        &__gallery
+            padding: 0
+
+
+    
