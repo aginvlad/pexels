@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import HomePage from './HomePage';
 import Category from './Category';
+import Error404 from '../components/Error404/Erro404';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
             component={props => <Category {...props} />}
             location={{ pathname: '/search/:query' }}
           />
+          <Route component={Error404}/>
         </Switch>
       </>
     );
